@@ -1,5 +1,4 @@
 resource "aws_iam_role" "example" {
-  assume_role_policy = data.aws_iam_policy_document.example_assume_role_policy.json
   name               = "example"
 }
 
@@ -10,7 +9,6 @@ resource "aws_eks_cluster" "example" {
   vpc_config {
     endpoint_private_access = true
     endpoint_public_access  = false
-    # ... other configuration ...
   }
 
   tags = {
