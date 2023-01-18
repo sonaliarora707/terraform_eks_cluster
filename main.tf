@@ -1,7 +1,9 @@
-required_providers {
+terraform{
+  required_providers {
   aws = {
    source = "hashicorp/aws"
   }
+ }
  }
 
 resource "aws_iam_role" "eks-iam-role" {
@@ -50,7 +52,11 @@ resource "aws_eks_cluster" "devopsthehardway-eks" {
 
 resource "aws_iam_role" "workernodes" {
   name = "eks-node-group-example"
- 
+  
+  tags = {
+    Owner = "stackguardian"
+  }
+
   assume_role_policy = jsonencode({
    Statement = [{
     Action = "sts:AssumeRole"
